@@ -1,15 +1,32 @@
 package lectures
 
-import lectures.week2oop.{Drum, MusicalInstrument, Person, Violin}
+import lectures.week2oop.{BaseAccount, FreeAccount, PaidAccount, Settings}
 
 object Main {
 
   def main(fArgs: Array[String]): Unit = {
+    val baseAccount = BaseAccount(
+      accountId = 1,
+      accountType = PaidAccount,
+      settings = Settings.AccountSettings(
+        email = "test@mail.com",
+        password = "abr#45&",
+        picture = "link/to/some/pic"))
+
+    baseAccount.info()
+    baseAccount.performAction()
+    println(baseAccount)
+    //------------------------------------------------------------------------------------------------------------------
+    //    val branch = Branch()
+    //    val account = branch.openAccount("personal")
+    //
+    //    println(account)
+    //------------ abstraction -----------------------------------------------------------------------------------------
     //    val notification: Listener = new Listener("mousedown", null)
     //    notification
     //      .register((eventName: String) => println(s"trigger -$eventName- event"))
     //      .sendNotification()
-    //------------------------------------------------------------------------------------------------------------------
+    //------------- parametrization ------------------------------------------------------------------------------------
     //    val order = new Order(RegularCustomer(true))
     //    println(order.showMenu)
     //------------------------------------------------------------------------------------------------------------------
@@ -24,16 +41,16 @@ object Main {
     //    store.sell(new Apple("Apple-4135"))
     //    store.sell(new GalaApple("GalaApple-4133"))
     //    store.sell(new GreenApple("GreenApple-3344"))
-    //------------------------------------------------------------------------------------------------------------------
+    //-------- syntactic shugar ----------------------------------------------------------------------------------------
     //    println(!EnglishStudent(true)) // This person is not fluent in English
     //    println(!EnglishStudent(false)) // This person is fluent in English
     //------------------------------------------------------------------------------------------------------------------
     //    println(new Client("Bob").madeOrder)
     //------------------------------------------------------------------------------------------------------------------
-    val bob = new Person("Bob")
-    println((+bob).name) // Bob NoSurname
-
-    val alice = new Person("Alice")
-    println((+alice).name) // Alice NoSurname
+    //    val bob = new Person("Bob")
+    //    println((+bob).name) // Bob NoSurname
+    //
+    //    val alice = new Person("Alice")
+    //    println((+alice).name) // Alice NoSurname
   }
 }
