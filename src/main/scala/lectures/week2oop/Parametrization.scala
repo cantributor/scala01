@@ -13,20 +13,26 @@ class Order[T <: Customer](val person: T) {
 }
 
 //----------------------------------------------------------------------------------------------------------------------
-abstract class MusicInstrument[A] {
-  val productionYear: Int
+//abstract class MusicInstrument[A] {
+//  val productionYear: Int
+//}
+//
+//object MusicInstrument {
+//  def apply[T](py: Int): MusicInstrument[T] = new MusicInstrument[T] {
+//    override val productionYear: Int = py
+//  }
+//}
+//
+//case class Guitar(productionYear: Int) extends MusicInstrument
+//
+//case class Piano(productionYear: Int) extends MusicInstrument
+
+case object Violin
+case object Drum
+
+object MusicalInstrument {
+  def play[T](instrument: T): Unit = println(s"playing $instrument")
 }
-
-object MusicInstrument {
-  def apply[T](py: Int): MusicInstrument[T] = new MusicInstrument[T] {
-    override val productionYear: Int = py
-  }
-}
-
-case class Guitar(productionYear: Int) extends MusicInstrument
-
-case class Piano(productionYear: Int) extends MusicInstrument
-
 //----------------------------------------------------------------------------------------------------------------------
 trait Fruit {
   val code: String
