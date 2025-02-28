@@ -1,6 +1,6 @@
 package lectures
 
-import lectures.week2oop.{Drum, MusicalInstrument, Violin}
+import lectures.week2oop.{Drum, MusicalInstrument, Person, Violin}
 
 object Main {
 
@@ -15,8 +15,9 @@ object Main {
     //------------------------------------------------------------------------------------------------------------------
     //    val guitar = Guitar.apply(2024)
     //    println(guitar)
-    MusicalInstrument.play(Violin) // playing Violin
-    MusicalInstrument.play(Drum) // playing Drum
+    //
+    //    MusicalInstrument.play(Violin) // playing Violin
+    //    MusicalInstrument.play(Drum) // playing Drum
     // -----------------------------------------------------------------------------------------------------------------
     //    val store: Store[GalaApple] = new Store[Apple]
     //
@@ -28,5 +29,11 @@ object Main {
     //    println(!EnglishStudent(false)) // This person is fluent in English
     //------------------------------------------------------------------------------------------------------------------
     //    println(new Client("Bob").madeOrder)
+    //------------------------------------------------------------------------------------------------------------------
+    val bob = new Person("Bob")
+    println((+bob).name) // Bob NoSurname
+
+    val alice = new Person("Alice")
+    println((+alice).name) // Alice NoSurname
   }
 }

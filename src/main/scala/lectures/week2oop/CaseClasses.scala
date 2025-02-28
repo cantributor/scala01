@@ -1,12 +1,12 @@
 package lectures.week2oop
 
-class Person(name: String)
+class Person1(name: String)
 
-object Person {
+object Person1 {
   val age = 30
 }
 
-val bob = Person("Bob")
+val bob = Person1("Bob")
 
 case class Course2(title: String, instructor: String)
 
