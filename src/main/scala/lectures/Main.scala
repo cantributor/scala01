@@ -1,21 +1,28 @@
 package lectures
 
-import lectures.week2oop.{BaseAccount, FreeAccount, PaidAccount, Settings}
+import lectures.week2oop.{BaseAccount, FreeAccount, PaidAccount, Service, Settings, UpdatableData, UserEvent}
 
 object Main {
 
   def main(fArgs: Array[String]): Unit = {
-    val baseAccount = BaseAccount(
-      accountId = 1,
-      accountType = PaidAccount,
-      settings = Settings.AccountSettings(
-        email = "test@mail.com",
-        password = "abr#45&",
-        picture = "link/to/some/pic"))
+    val event = UserEvent(1, "account_create", "in_process")
+    val service = new Service(event, UpdatableData.userEvent)
 
-    baseAccount.info()
-    baseAccount.performAction()
-    println(baseAccount)
+    val eventUpdated = service.update("complete")
+
+    println(eventUpdated) // UserEvent(1,account_create,complete)
+    //------------------------------------------------------------------------------------------------------------------
+    //    val baseAccount = BaseAccount(
+    //      accountId = 1,
+    //      accountType = PaidAccount,
+    //      settings = Settings.AccountSettings(
+    //        email = "test@mail.com",
+    //        password = "abr#45&",
+    //        picture = "link/to/some/pic"))
+    //
+    //    baseAccount.info()
+    //    baseAccount.performAction()
+    //    println(baseAccount)
     //------------------------------------------------------------------------------------------------------------------
     //    val branch = Branch()
     //    val account = branch.openAccount("personal")
