@@ -1,16 +1,43 @@
 package lectures
 
-import lectures.week2oop.{BaseAccount, FreeAccount, PaidAccount, Service, Settings, UpdatableData, UserEvent}
+import lectures.week3fp.{result5, result6}
+
 
 object Main {
 
   def main(fArgs: Array[String]): Unit = {
-    val event = UserEvent(1, "account_create", "in_process")
-    val service = new Service(event, UpdatableData.userEvent)
-
-    val eventUpdated = service.update("complete")
-
-    println(eventUpdated) // UserEvent(1,account_create,complete)
+    println(result5)
+    println(result6)
+    //------------------------------------------------------------------------------------------------------------------
+    //    val age: String = "34"
+    //
+    //    case class Employee(age: Int) {
+    //      def displayAge(): Unit = println(s"Employee's age is $age")
+    //    }
+    //
+    //    object Employee {
+    //      implicit def createEmployee(age: String): Employee = Employee(age.toInt)
+    //    }
+    //
+    //    object Helper {
+    //      implicit def createInt(implicit value: String): Int = value.toInt
+    //    }
+    //
+    //    import Employee.createEmployee
+    //
+    //    age.displayAge()
+    //------------------------------------------------------------------------------------------------------------------
+    //    println(courses.sorted)
+    //------------------------------------------------------------------------------------------------------------------
+    //    println(getType(List(1, 3)))
+    //    println(getType(Array(1.1, 3.2)))
+    //------------------------------------------------------------------------------------------------------------------
+    //    val event = UserEvent(1, "account_create", "in_process")
+    //    val service = new Service(event, UpdatableData.userEvent)
+    //
+    //    val eventUpdated = service.update("complete")
+    //
+    //    println(eventUpdated) // UserEvent(1,account_create,complete)
     //------------------------------------------------------------------------------------------------------------------
     //    val baseAccount = BaseAccount(
     //      accountId = 1,
