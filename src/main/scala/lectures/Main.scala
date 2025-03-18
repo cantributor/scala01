@@ -1,13 +1,14 @@
 package lectures
 
-import lectures.week3fp.{result5, result6}
+import lectures.week3fp.f
 
 
 object Main {
 
   def main(fArgs: Array[String]): Unit = {
-    println(result5)
-    println(result6)
+    println(f(List(4, 7)))
+    //------------------------------------------------------------------------------------------------------------------
+    //    println(firstMethod().orElse(secondMethod()))
     //------------------------------------------------------------------------------------------------------------------
     //    val age: String = "34"
     //
