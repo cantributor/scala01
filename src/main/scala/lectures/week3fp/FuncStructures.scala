@@ -15,3 +15,12 @@ def secondMethod(): Try[Exception] = Try(new RuntimeException("Exception"))
 def double(aList: List[Int]): List[Int] = aList.map(_ * 2)
 //----------------------------------------------------------------------------------------------------------------------
 def f(aList: List[Int]): Int = Try(aList.product / aList.sum).getOrElse(0)
+//----------------------------------------------------------------------------------------------------------------------
+def callByName(n: => Int): Int = {
+  scala.math.pow(n, 3).toInt
+}
+
+def double(n: Int): Int = {
+  println(s"double $n")
+  2 * n
+}

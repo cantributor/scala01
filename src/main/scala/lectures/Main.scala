@@ -1,12 +1,14 @@
 package lectures
 
-import lectures.week3fp.f
+import lectures.week3fp.{callByName, double, f}
 
 
 object Main {
 
   def main(fArgs: Array[String]): Unit = {
-    println(f(List(4, 7)))
+    println(callByName(double(1)))
+    //------------------------------------------------------------------------------------------------------------------
+    //    println(f(List(4, 7)))
     //------------------------------------------------------------------------------------------------------------------
     //    println(firstMethod().orElse(secondMethod()))
     //------------------------------------------------------------------------------------------------------------------
