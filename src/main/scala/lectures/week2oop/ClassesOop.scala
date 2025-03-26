@@ -1,11 +1,11 @@
 package lectures.week2oop
 
-class Employee(val name: String, var salary: Double) {
+class Employee1(val name: String, var salary: Double) {
   def this() = this("John", 0)
 }
 
 def printEmployee(): Unit = {
-  val employee = new Employee()
+  val employee = new Employee1()
   println(s"${employee.name}'s salary is ${employee.salary}")
 }
 

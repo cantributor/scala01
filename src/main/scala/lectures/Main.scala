@@ -1,12 +1,14 @@
 package lectures
 
-import lectures.week3fp.{callByName, double, f}
+import lectures.week3fp.{display, loadFromDb, scalaCourses}
 
 
 object Main {
 
   def main(fArgs: Array[String]): Unit = {
-    println(callByName(double(1)))
+    display(loadFromDb())
+    //------------------------------------------------------------------------------------------------------------------
+    //    println(callByName(double(1)))
     //------------------------------------------------------------------------------------------------------------------
     //    println(f(List(4, 7)))
     //------------------------------------------------------------------------------------------------------------------

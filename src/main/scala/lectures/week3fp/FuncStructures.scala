@@ -1,7 +1,5 @@
 package lectures.week3fp
 
-import com.sun.net.httpserver.Authenticator.Success
-
 import scala.util.Try
 
 val someVal = Some(2)
@@ -24,3 +22,10 @@ def double(n: Int): Int = {
   println(s"double $n")
   2 * n
 }
+//----------------------------------------------------------------------------------------------------------------------
+case class User(id: Int, name: String)
+
+val userOptions: List[Option[User]] = List(None, Some(User(1, "Alice")), Some(User(2, "Bob")))
+val users1: List[User] = userOptions.flatten // without None
+val users2: List[User] = userOptions.flatMap(userOption => userOption.iterator) // without None
+//----------------------------------------------------------------------------------------------------------------------

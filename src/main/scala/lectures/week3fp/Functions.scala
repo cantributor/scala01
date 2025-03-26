@@ -1,7 +1,5 @@
 package lectures.week3fp
 
-import java.util
-
 //----------------------------------------------------------------------------------------------------------------------
 val strlen = (s: String) => s.length
 //----------------------------------------------------------------------------------------------------------------------
@@ -69,14 +67,14 @@ def getType(collection: Any): String = {
   }
 }
 //----------------------------------------------------------------------------------------------------------------------
-case class Course(id: Int, title: String, studentCount: Int)
+case class Course1(id: Int, title: String, studentCount: Int)
 
 val courses = List(
-  Course(0, "Scala", 10),
-  Course(3, "Advanced Scala", 20),
-  Course(2, "Spark", 4),
-  Course(1, "Cats", 10)
+  Course1(0, "Scala", 10),
+  Course1(3, "Advanced Scala", 20),
+  Course1(2, "Spark", 4),
+  Course1(1, "Cats", 10)
 )
 
-implicit val courseOrdering: Ordering[Course] = Ordering.by(course => (course.studentCount, course.id))
+implicit val courseOrdering: Ordering[Course1] = Ordering.by(course => (course.studentCount, course.id))
 //----------------------------------------------------------------------------------------------------------------------
