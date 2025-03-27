@@ -1,12 +1,17 @@
 package lectures
 
-import lectures.week3fp.{display, loadFromDb, scalaCourses}
+import lectures.week3fp.{foundDevs, powerOfTwo}
 
 
 object Main {
 
   def main(fArgs: Array[String]): Unit = {
-    display(loadFromDb())
+    println(powerOfTwo)
+    //    println(powerOfTwo)
+    //------------------------------------------------------------------------------------------------------------------
+    //    println(Company(title, employeeCount) - retiredCount)
+    //------------------------------------------------------------------------------------------------------------------
+    //    display(loadFromDb())
     //------------------------------------------------------------------------------------------------------------------
     //    println(callByName(double(1)))
     //------------------------------------------------------------------------------------------------------------------

@@ -1,5 +1,7 @@
 package lectures.week3fp
 
+import lectures.week3fp.SeniorityLevel.{Junior, Middle, Senior}
+
 //----------------------------------------------------------------------------------------------------------------------
 case class Course(id: Int, title: String)
 
@@ -30,3 +32,47 @@ def display(employee: List[Employee]): Unit = {
   println(s"First Print: $employee")
   println(s"Second Print: $employee")
 }
+//----------------------------------------------------------------------------------------------------------------------
+val title: String = "Company-A"
+val employeeCount: Int = 100
+val retiredCount: Int = 10
+
+case class Company(title: String, employeeCount: Int)
+
+object Company {
+  implicit class Manager(company: Company) {
+    def -(peopleCount: Int): Company = Company(company.title, company.employeeCount - peopleCount)
+  }
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+trait SeniorityLevel
+
+object SeniorityLevel {
+  case object Junior extends SeniorityLevel
+
+  case object Middle extends SeniorityLevel
+
+  case object Senior extends SeniorityLevel
+}
+
+case class Developer(
+                      name: String,
+                      level: SeniorityLevel,
+                      progLanguage: List[String]
+                    )
+
+val developers: List[Developer] = List(
+  Developer("Alice", Junior, List(String("c++"), "SQL", "c")),
+  Developer("Bob", Middle, List("java", "scala", "SQL")),
+  Developer("Cris", Senior, List("java")))
+
+val foundDevs: List[String] = developers
+  .filter(dev => Set(Middle, Senior).contains(dev.level))
+  .filter(dev => dev.progLanguage.size >= 3)
+  .map(_.name)
+//----------------------------------------------------------------------------------------------------------------------
+import scala. math. BigDecimal. int2bigDecimal
+val capacity = 1000000000
+val power = 34
+val powerOfTwo = LazyList.fill(capacity)(2.toBigInt).#::(1.toBigInt).take(power + 1).toList.foldLeft(1.toBigInt)(_ * _)
