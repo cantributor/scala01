@@ -1,12 +1,21 @@
 package lectures
 
-import lectures.week3fp.{foundDevs, powerOfTwo}
+import lectures.week3fp.{compare}
 
 
 object Main {
 
   def main(fArgs: Array[String]): Unit = {
-    println(powerOfTwo)
+    println(compare("1.0.2.03", "1.1.0") == -1)
+    println(compare("2.1", "2.01") == 0)
+    println(compare("3.0", "3.0.0.0") == 0)
+    println(compare("4", "4.0.0.1") == -1)
+    println(compare("4.0.1", "4.0.0.1") == 1)
+    println(compare("1.10.1", "11.0.1") == -1)
+
+    //------------------------------------------------------------------------------------------------------------------
+    //    println(s"$initials")
+    //------------------------------------------------------------------------------------------------------------------
     //    println(powerOfTwo)
     //------------------------------------------------------------------------------------------------------------------
     //    println(Company(title, employeeCount) - retiredCount)

@@ -18,9 +18,9 @@ val aList3 = List(10, 100, 1000)
 
 val result2: List[Int] = aList1.flatMap(l1 => aList3.map(l3 => l3 * (l1 + aList2.max)))
 //----------------------------------------------------------------------------------------------------------------------
-val input = "9-876-543-21-09"
+val input1 = "9-876-543-21-09"
 def countNumbers(s: String): Map[Char, Int] = s.filter(_ != '-').groupBy(identity).map(t => (t._1, t._2.length))
-val result3 = countNumbers(input)
+val result3 = countNumbers(input1)
 
 //----------------------------------------------------------------------------------------------------------------------
 trait WeekDay
