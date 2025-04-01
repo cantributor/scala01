@@ -41,3 +41,7 @@ def compare(v1: String, v2: String): Int = {
   unequal.map({ case (elem, index) => if (elem > list2(index)) 1 else -1 }).getOrElse(0)
 }
 //----------------------------------------------------------------------------------------------------------------------
+def duplicate[T](list: List[T], num: Int): List[T] = list.flatMap(element => List.fill(num)(element))
+//----------------------------------------------------------------------------------------------------------------------
+def countChars(s: String): Map[Char, Int] = s.map(_.toLower).groupBy(identity).mapValues(_.length).toMap
+//----------------------------------------------------------------------------------------------------------------------
