@@ -96,3 +96,20 @@ def isConnected(network: Map[String, Set[String]], locationA: String, locationB:
 
   loop(network(locationA)).contains(locationB)
 }
+
+//----------------------------------------------------------------------------------------------------------------------
+val course = "Scala"
+val doLogin = true
+val doEnroll = true
+
+object LoginService {
+  def login(): Platform = if (doLogin) new Platform else throw new RuntimeException("Failed to login")
+}
+
+class Platform {
+  def enroll(): String = if (doEnroll) course else throw new RuntimeException("You can not enrol yourself in this course")
+}
+
+object NotificationService {
+  def notify(course: String): Unit = println("Notify")
+}
