@@ -1,12 +1,44 @@
 package lectures
 
-import lectures.week3fp.{compare, countChars, duplicate}
+import lectures.week3fp.{
+  add, connect, disconnect, remove, flightCount, mostFlights, numLocationsWithNoFlights, isConnected
+}
 
 
 object Main {
 
   def main(fArgs: Array[String]): Unit = {
-    println(countChars("Sst"))
+    val network = Map("Msk" -> Set("Spb"), "Spb" -> Set("Msk"))
+    var network2 = add(network, "Krd")
+    network2 = add(network2, "Nvs")
+    network2 = add(network2, "NY")
+    network2 = add(network2, "Lon")
+    network2 = add(network2, "Par")
+    network2 = add(network2, "Mel")
+    println(s"before connect $network2")
+    network2 = connect(network2, "Msk", "Krd")
+    network2 = connect(network2, "Msk", "Nvs")
+    network2 = connect(network2, "Krd", "Nvs")
+    network2 = connect(network2, "NY", "Lon")
+    network2 = connect(network2, "Msk", "NY")
+    network2 = connect(network2, "Mel", "Par")
+    println(s"after connect $network2")
+    network2 = disconnect(network2, "Nvs", "Krd")
+    println(s"after disconnect $network2")
+    network2 = remove(network2, "Nvs")
+    println(s"after remove $network2")
+    println(s"flight count ${flightCount(network2, "Msk")}")
+    println(s"most flights ${mostFlights(network2)}")
+    println(s"num locations with no flights ${numLocationsWithNoFlights(network2)}")
+    println(s"are connected Krd, Msk ${isConnected(network2, "Krd", "Msk")}")
+    println(s"are connected Krd, NY ${isConnected(network2, "Krd", "NY")}")
+    println(s"are connected Krd, Lon ${isConnected(network2, "Krd", "Lon")}")
+    println(s"are connected Krd, Mel ${isConnected(network2, "Krd", "Mel")}")
+    println(s"are connected Spb, Mel ${isConnected(network2, "Spb", "Mel")}")
+    println(s"are connected Par, Mel ${isConnected(network2, "Par", "Mel")}")
+    println(s"are connected Msk, Lon ${isConnected(network2, "Msk", "Lon")}")
+    //------------------------------------------------------------------------------------------------------------------
+    //    println(countChars("Sst"))
     //------------------------------------------------------------------------------------------------------------------
     //    println(duplicate(List(1, 2, 3), 2))
     //------------------------------------------------------------------------------------------------------------------
