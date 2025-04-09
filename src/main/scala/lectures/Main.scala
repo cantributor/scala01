@@ -1,27 +1,29 @@
 package lectures
 
-import lectures.week3fp.{LoginService, Platform}
-
-import scala.util.{Try, Success, Failure}
+import lectures.week4trees.tree
 
 
 object Main {
 
   def main(fArgs: Array[String]): Unit = {
-    val platform: Try[Platform] = Try(LoginService.login())
-
-    platform match {
-      case Success(v) =>
-        val result = Try(v.enroll())
-        result match {
-          case Success(v) =>
-            println("You have successfully enrolled in the course " + v)
-          case Failure(e) =>
-            println(e.getMessage)
-        }
-      case Failure(e) =>
-        println(e.getMessage)
-    }
+    println(tree.collectLeaves.map(_.value).sorted)
+    println(tree.countLeaves)
+    println(tree.nodesAtLevel(3).map(_.value).sorted)
+    //------------------------------------------------------------------------------------------------------------------
+    //    val platform: Try[Platform] = Try(LoginService.login())
+    //
+    //    platform match {
+    //      case Success(v) =>
+    //        val result = Try(v.enroll())
+    //        result match {
+    //          case Success(v) =>
+    //            println("You have successfully enrolled in the course " + v)
+    //          case Failure(e) =>
+    //            println(e.getMessage)
+    //        }
+    //      case Failure(e) =>
+    //        println(e.getMessage)
+    //    }
     //------------------------------------------------------------------------------------------------------------------
     //    val network = Map("Msk" -> Set("Spb"), "Spb" -> Set("Msk"))
     //    var network2 = add(network, "Krd")
