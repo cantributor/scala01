@@ -9,6 +9,7 @@ object Main {
     println(tree.collectLeaves.map(_.value).sorted)
     println(tree.countLeaves)
     println(tree.nodesAtLevel(3).map(_.value).sorted)
+    println(tree.collectNodes().sorted)
     //------------------------------------------------------------------------------------------------------------------
     //    val platform: Try[Platform] = Try(LoginService.login())
     //

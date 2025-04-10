@@ -18,6 +18,8 @@ abstract class BinaryTree[+T] {
   def countLeaves: Int
 
   def nodesAtLevel(level: Int): List[BinaryTree[T]]
+
+  def collectNodes(): List[T]
 }
 
 case class Node[+T](
@@ -30,6 +32,9 @@ case class Node[+T](
 
   override def isLeaf: Boolean = leftChild.isEmpty & rightChild.isEmpty
 
+  private def traverseTree[S >: T](toInspect: List[BinaryTree[S]]) =
+    toInspect.flatMap(bt => List(bt.leftChild, bt.rightChild).filterNot(_.isEmpty))
+
   override def collectLeaves: List[BinaryTree[T]] = {
 
     @tailrec
@@ -38,7 +43,7 @@ case class Node[+T](
         accumulator
       else {
         val forAccumulation = toInspect.flatMap(bt => List(bt.leftChild, bt.rightChild).filter(_.isLeaf))
-        val newToInspect = toInspect.flatMap(bt => List(bt.leftChild, bt.rightChild).filterNot(_.isEmpty))
+        val newToInspect: List[BinaryTree[T]] = traverseTree(toInspect)
         loop(newToInspect, accumulator ::: forAccumulation)
       }
     }
@@ -55,12 +60,28 @@ case class Node[+T](
         accumulator
       else {
         val forAccumulation = if (currLevel == level) toInspect else List()
-        val newToInspect = toInspect.flatMap(bt => List(bt.leftChild, bt.rightChild).filterNot(_.isEmpty))
+        val newToInspect: List[BinaryTree[T]] = traverseTree(toInspect)
         loop(newToInspect, currLevel + 1, accumulator ::: forAccumulation)
       }
     }
 
     loop(List(this), 0, List())
+  }
+
+  override def collectNodes(): List[T] = {
+
+    @tailrec
+    def loop(toInspect: List[BinaryTree[T]], accumulator: List[BinaryTree[T]]): List[BinaryTree[T]] = {
+      if (toInspect.isEmpty)
+        accumulator
+      else {
+        val accumulated = accumulator ::: toInspect
+        val newToInspect: List[BinaryTree[T]] = traverseTree(toInspect)
+        loop(newToInspect, accumulated)
+      }
+    }
+
+    loop(List(this), List()).map(_.value)
   }
 }
 
@@ -80,6 +101,8 @@ case object TreeEnd extends BinaryTree[Nothing] {
   override def countLeaves: Int = 0
 
   override def nodesAtLevel(level: Int): List[BinaryTree[Nothing]] = List()
+
+  override def collectNodes(): List[Nothing] = List()
 }
 
 val tree = Node(1,
