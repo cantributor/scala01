@@ -125,7 +125,28 @@ def hasPath(tree: BinaryTree[Int], target: Int): Boolean = {
     .contains(target)
 }
 
-val tree = Node(1,
+def findAllPaths(tree: BinaryTree[String], target: String): List[List[String]] = {
+  @tailrec
+  def loop(accumulator: List[List[BinaryTree[String]]]): List[List[BinaryTree[String]]] = {
+    val toInspect = accumulator.filter(path => !path.last.isEmpty && !path.last.isLeaf)
+    if (toInspect.isEmpty)
+      accumulator
+    else {
+      val ready = accumulator.filter(path => path.last.isLeaf)
+      val forAccumulation = toInspect
+        .flatMap(path => List(path :+ path.last.leftChild, path :+ path.last.rightChild)
+          .filter(path => !path.last.isEmpty))
+      loop(ready ::: forAccumulation)
+    }
+  }
+
+  loop(List(List(tree)))
+    .filter(path => !path.last.isEmpty)
+    .filter(path => target.toInt == path.foldLeft(0)((sum, node) => sum + node.value.toInt))
+    .map(path => path.map(_.value))
+}
+
+val tree1 = Node(1,
   Node(2,
     Node(4,
       TreeEnd,
@@ -142,3 +163,35 @@ val tree = Node(1,
     Node(7,
       TreeEnd,
       TreeEnd)))
+
+val tree2 = Node("1",
+  Node("2",
+    Node("4",
+      TreeEnd,
+      TreeEnd),
+    Node("5",
+      TreeEnd,
+      Node("8",
+        TreeEnd,
+        TreeEnd))),
+  Node("3",
+    Node("6",
+      TreeEnd,
+      TreeEnd),
+    Node("7",
+      TreeEnd,
+      TreeEnd))
+)
+
+val tree3 = Node("1",
+  Node("12",
+    Node("4",
+      TreeEnd,
+      Node("8", TreeEnd, TreeEnd)),
+    Node("5",
+      Node("7", TreeEnd, TreeEnd),
+      TreeEnd)),
+  Node("3",
+    Node("6", TreeEnd, TreeEnd),
+    Node("7", Node("10", Node("4", TreeEnd, TreeEnd), TreeEnd), TreeEnd))
+)

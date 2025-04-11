@@ -1,20 +1,23 @@
 package lectures
 
-import lectures.week4trees.{tree, hasPath, TreeEnd}
+import lectures.week4trees.{tree1, tree2, tree3, hasPath, TreeEnd, findAllPaths}
 
 
 object Main {
 
   def main(fArgs: Array[String]): Unit = {
-    println(tree.collectLeaves.map(_.value).sorted)
-    println(tree.countLeaves)
-    println(tree.nodesAtLevel(3).map(_.value).sorted)
-    println(tree.collectNodes().sorted)
-    println(hasPath(tree, 7))
-    println(hasPath(tree, 3))
-    println(hasPath(tree, 16))
-    println(hasPath(tree, 14))
+    println(tree1.collectLeaves.map(_.value).sorted)
+    println(tree1.countLeaves)
+    println(tree1.nodesAtLevel(3).map(_.value).sorted)
+    println(tree1.collectNodes().sorted)
+    println(hasPath(tree1, 7))
+    println(hasPath(tree1, 3))
+    println(hasPath(tree1, 16))
+    println(hasPath(tree1, 14))
     println(hasPath(TreeEnd, 7))
+    println(findAllPaths(tree2, "10"))
+    println(findAllPaths(tree3, "25"))
+    println(findAllPaths(TreeEnd, "25"))
     //------------------------------------------------------------------------------------------------------------------
     //    val platform: Try[Platform] = Try(LoginService.login())
     //
