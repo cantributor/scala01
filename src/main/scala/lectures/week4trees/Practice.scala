@@ -32,7 +32,7 @@ case class Node[+T](
 
   override def isLeaf: Boolean = leftChild.isEmpty & rightChild.isEmpty
 
-  private def traverseTree[S >: T](toInspect: List[BinaryTree[S]]) =
+  private def nextToInspect[S >: T](toInspect: List[BinaryTree[S]]) =
     toInspect.flatMap(bt => List(bt.leftChild, bt.rightChild).filterNot(_.isEmpty))
 
   override def collectLeaves: List[BinaryTree[T]] = {
@@ -43,7 +43,7 @@ case class Node[+T](
         accumulator
       else {
         val forAccumulation = toInspect.flatMap(bt => List(bt.leftChild, bt.rightChild).filter(_.isLeaf))
-        val newToInspect: List[BinaryTree[T]] = traverseTree(toInspect)
+        val newToInspect: List[BinaryTree[T]] = nextToInspect(toInspect)
         loop(newToInspect, accumulator ::: forAccumulation)
       }
     }
@@ -60,7 +60,7 @@ case class Node[+T](
         accumulator
       else {
         val forAccumulation = if (currLevel == level) toInspect else List()
-        val newToInspect: List[BinaryTree[T]] = traverseTree(toInspect)
+        val newToInspect: List[BinaryTree[T]] = nextToInspect(toInspect)
         loop(newToInspect, currLevel + 1, accumulator ::: forAccumulation)
       }
     }
@@ -76,7 +76,7 @@ case class Node[+T](
         accumulator
       else {
         val accumulated = accumulator ::: toInspect
-        val newToInspect: List[BinaryTree[T]] = traverseTree(toInspect)
+        val newToInspect: List[BinaryTree[T]] = nextToInspect(toInspect)
         loop(newToInspect, accumulated)
       }
     }
@@ -103,6 +103,26 @@ case object TreeEnd extends BinaryTree[Nothing] {
   override def nodesAtLevel(level: Int): List[BinaryTree[Nothing]] = List()
 
   override def collectNodes(): List[Nothing] = List()
+}
+
+def hasPath(tree: BinaryTree[Int], target: Int): Boolean = {
+  @tailrec
+  def loop(accumulator: List[List[BinaryTree[Int]]]): List[List[BinaryTree[Int]]] = {
+    val toInspect = accumulator.filter(path => !path.last.isEmpty && !path.last.isLeaf)
+    if (toInspect.isEmpty)
+      accumulator
+    else {
+      val ready = accumulator.filter(path => path.last.isLeaf)
+      val forAccumulation = toInspect
+        .flatMap(path => List(path :+ path.last.leftChild, path :+ path.last.rightChild)
+          .filter(path => !path.last.isEmpty))
+      loop(ready ::: forAccumulation)
+    }
+  }
+
+  loop(List(List(tree)))
+    .map(path => path.filter(!_.isEmpty).foldLeft(0)((sum, node) => sum + node.value))
+    .contains(target)
 }
 
 val tree = Node(1,

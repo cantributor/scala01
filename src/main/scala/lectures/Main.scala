@@ -1,6 +1,6 @@
 package lectures
 
-import lectures.week4trees.tree
+import lectures.week4trees.{tree, hasPath, TreeEnd}
 
 
 object Main {
@@ -10,6 +10,11 @@ object Main {
     println(tree.countLeaves)
     println(tree.nodesAtLevel(3).map(_.value).sorted)
     println(tree.collectNodes().sorted)
+    println(hasPath(tree, 7))
+    println(hasPath(tree, 3))
+    println(hasPath(tree, 16))
+    println(hasPath(tree, 14))
+    println(hasPath(TreeEnd, 7))
     //------------------------------------------------------------------------------------------------------------------
     //    val platform: Try[Platform] = Try(LoginService.login())
     //
