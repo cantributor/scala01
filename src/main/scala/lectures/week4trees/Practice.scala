@@ -140,9 +140,21 @@ def findAllPaths(tree: BinaryTree[String], target: String): List[List[String]] =
     }
   }
 
-  loop(List(List(tree)))
+  val list = loop(List(List(tree)))
+  val maxLength = list.map(path => path.length).max - 2
+
+  def leftIsBigger(path: List[BinaryTree[String]]): Int =
+    path.slice(0, path.length - 1)
+      .zipWithIndex.map({ case (elem, index) =>
+        val next = path(index + 1)
+        val leftFirst = if (next == elem.leftChild) 1 else 0
+        leftFirst * scala.math.pow(2, maxLength - index).toInt
+      }).sum
+
+  list
     .filter(path => !path.last.isEmpty)
     .filter(path => target.toInt == path.foldLeft(0)((sum, node) => sum + node.value.toInt))
+    .sorted(Ordering.by(leftIsBigger).reverse)
     .map(path => path.map(_.value))
 }
 
@@ -194,4 +206,29 @@ val tree3 = Node("1",
   Node("3",
     Node("6", TreeEnd, TreeEnd),
     Node("7", Node("10", Node("4", TreeEnd, TreeEnd), TreeEnd), TreeEnd))
+)
+
+val exTree = Node("1",
+  Node("2",
+    Node("3",
+      Node("4",
+        TreeEnd,
+        TreeEnd),
+      TreeEnd),
+    Node("5",
+      Node("6",
+        TreeEnd,
+        TreeEnd),
+      TreeEnd)),
+  Node("6",
+    Node("7",
+      TreeEnd,
+      Node("8",
+        TreeEnd,
+        Node("9",
+          TreeEnd,
+          TreeEnd))),
+    Node("3",
+      TreeEnd,
+      TreeEnd))
 )

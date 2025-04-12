@@ -1,6 +1,6 @@
 package lectures
 
-import lectures.week4trees.{tree1, tree2, tree3, hasPath, TreeEnd, findAllPaths}
+import lectures.week4trees.{tree1, tree2, tree3, exTree, hasPath, TreeEnd, findAllPaths}
 
 
 object Main {
@@ -17,6 +17,7 @@ object Main {
     println(hasPath(TreeEnd, 7))
     println(findAllPaths(tree2, "10"))
     println(findAllPaths(tree3, "25"))
+    println(findAllPaths(exTree, "10"))
     println(findAllPaths(TreeEnd, "25"))
     //------------------------------------------------------------------------------------------------------------------
     //    val platform: Try[Platform] = Try(LoginService.login())
