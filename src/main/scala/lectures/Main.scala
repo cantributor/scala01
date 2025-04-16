@@ -1,6 +1,6 @@
 package lectures
 
-import lectures.week4trees.{tree1, tree2, tree3, exTree, hasPath, TreeEnd, findAllPaths}
+import lectures.week4trees.{tree1, tree2, tree3, exTree, hasPath, TreeEnd, findAllPaths, Modifier}
 
 
 object Main {
@@ -19,6 +19,12 @@ object Main {
     println(findAllPaths(tree3, "25"))
     println(findAllPaths(exTree, "10"))
     println(findAllPaths(TreeEnd, "25"))
+    //------------------------------------------------------------------------------------------------------------------
+    val anIntModifier = new Modifier[Int](100)
+    println(anIntModifier.modifier)
+
+    anIntModifier.modifier = 101
+    println(anIntModifier.modifier)
     //------------------------------------------------------------------------------------------------------------------
     //    val platform: Try[Platform] = Try(LoginService.login())
     //
